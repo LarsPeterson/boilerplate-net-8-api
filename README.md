@@ -37,7 +37,7 @@ dotnet add package MongoDB.EntityFrameworkCore
 
 A typical C# project structure follows a fairly standard convention. Below is a general layout for a clean, maintainable project. I’ll break this into folders commonly seen in real-world enterprise-level C# applications.
 
-🗂️ Top-Level Project Structure
+### 🗂️ Top-Level Project Structure
 
 ```
 MyApp/
@@ -61,47 +61,22 @@ MyApp/
 └── docs/                     # Documentation, architecture diagrams, etc.
 ```
 
-🧱 Project Layer Responsibilities
-```
-Api
+### 🧱 Project Layer Responsibilities
+
+#### Api
 Handles HTTP endpoints, routing, input validation, and serialization. Should be thin and delegate logic to the Application layer.
 
-Application
+#### Application
 Contains use cases (services), commands/queries (CQRS), and interfaces for the domain. This is where business workflows live.
 
-Domain
+#### Domain
 Holds core business logic, entities, value objects, enums, interfaces, and domain services. This layer should not reference infrastructure or any frameworks.
 
-Infrastructure
+#### Infrastructure
 Implements the interfaces declared in the application layer — for example, EF Core repositories, email senders, external API clients, etc.
 
-Common
+#### Common
 Shared helpers, constants, result types, error handling, extensions, etc.
 
-Tests
+#### Tests
 Unit and integration tests, usually aligned with the structure of the code in src/.
-```
-
-
-✅ Notes
-
-```
-Use dependency injection to wire up interfaces to implementations.
-```
-
-📂 Inside a Project Folder - MyApp.API
-```
-MyApp.Api/
-├── Controllers/
-├── Middlewares/
-├── Models/                # Request/response DTOs
-├── Program.cs             # App entry point
-├── Startup.cs             # Service and middleware config (pre .NET 6)
-├── appsettings.json       # App config
-├── appsettings.Development.json
-└── MyApp.Api.csproj
-```
-
-
-📂 Inside a Project Folder - MyApp.Application
-
